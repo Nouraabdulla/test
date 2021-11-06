@@ -8,7 +8,6 @@ import 'package:relocker_sa/support_view.dart';
 import 'bloc/cubit/auth_cubit.dart';
 import 'home_view.dart';
 
-
 class ControllerViewScreen extends StatefulWidget {
   const ControllerViewScreen({Key? key}) : super(key: key);
 
@@ -17,18 +16,14 @@ class ControllerViewScreen extends StatefulWidget {
 }
 
 class _ControllerViewScreenState extends State<ControllerViewScreen> {
-
   int currentIndex = 2;
-  List _screen = [
-    SupportView(),
-    HomeView()
-  ];
+  List _screen = [SupportView(), HomeView()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFd3f3e6),
-      body: currentIndex > 0? _screen[currentIndex -1 ] : _screen[0],
+      body: currentIndex > 0 ? _screen[currentIndex - 1] : _screen[0],
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(25),
@@ -40,7 +35,10 @@ class _ControllerViewScreenState extends State<ControllerViewScreen> {
           items: [
             BottomNavigationBarItem(
               icon: IconButton(
-                icon: Icon(Icons.more_horiz_outlined, size: 30,),
+                icon: Icon(
+                  Icons.more_horiz_outlined,
+                  size: 30,
+                ),
                 onPressed: () {
                   setState(() {
                     showModalBottomSheet(
@@ -67,7 +65,7 @@ class _ControllerViewScreenState extends State<ControllerViewScreen> {
                                   title: Text('My account'),
                                   leading: Icon(Icons.person),
                                 ),
-                                onTap: (){},
+                                onTap: () {},
                               ),
                               const Divider(
                                 color: Colors.grey,
@@ -79,7 +77,7 @@ class _ControllerViewScreenState extends State<ControllerViewScreen> {
                                   title: Text('Technical support'),
                                   leading: Icon(Icons.headset_outlined),
                                 ),
-                                onTap: (){},
+                                onTap: () {},
                               ),
                               const Divider(
                                 color: Colors.grey,
@@ -91,25 +89,28 @@ class _ControllerViewScreenState extends State<ControllerViewScreen> {
                                 width: MediaQuery.of(context).size.width / 1.5,
                                 height: MediaQuery.of(context).size.width / 8,
                                 child: BlocConsumer<AuthCubit, AuthStates>(
-                                  listener: (context, state){},
+                                  listener: (context, state) {},
                                   builder: (context, state) => ElevatedButton(
-                                      child: const Text(
-                                        'LOG OUT',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                        ),
+                                    child: const Text(
+                                      'LOG ',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
                                       ),
-                                      style: ElevatedButton.styleFrom(
-                                          primary: Colors.red,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          )),
-                                      onPressed: () {
-                                        AuthCubit.get(context).signOut();
-                                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => StartScreen()));
-                                      },
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.red,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        )),
+                                    onPressed: () {
+                                      AuthCubit.get(context).signOut();
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  StartScreen()));
+                                    },
                                   ),
                                 ),
                               ),
@@ -131,16 +132,24 @@ class _ControllerViewScreenState extends State<ControllerViewScreen> {
               ),
               label: '',
             ),
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: SizedBox(
                 height: 35,
                 width: 35,
-                child: Image.asset('assets/images/key.png', fit: BoxFit.cover, color: currentIndex == 1? Colors.blue: Colors.grey[800], alignment: Alignment.center,),
+                child: Image.asset(
+                  'assets/images/key.png',
+                  fit: BoxFit.cover,
+                  color: currentIndex == 1 ? Colors.blue : Colors.grey[800],
+                  alignment: Alignment.center,
+                ),
               ),
               label: '',
             ),
             const BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 30,),
+              icon: Icon(
+                Icons.home,
+                size: 30,
+              ),
               label: '',
             ),
           ],
